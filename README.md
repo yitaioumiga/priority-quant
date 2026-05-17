@@ -87,7 +87,7 @@ python scripts/evaluate.py --projects '[{"name":"项目A","urgency":5,"importanc
 **输入**：
 ```json
 {
-  "name": "笔记侠系统重构",
+  "name": "电商平台重构",
   "description": "涉及前后端、数据迁移、用户体验优化，预计2个月",
   "urgency": 3,
   "importance": 5,
@@ -117,15 +117,15 @@ python scripts/evaluate.py --projects '[{"name":"项目A","urgency":5,"importanc
 
 **输入**：
 ```
-当前核心目标：校招准备
-新项目：淘宝商业计划书
+当前核心目标：产品上线
+新项目：社交媒体营销方案
 ```
 
 **输出**：
 ```
 ⚠️ 战略偏离警告
-该项目与当前核心目标"校招准备"严重偏离
-建议：暂缓或放弃该项目，集中精力准备校招
+该项目与当前核心目标"产品上线"严重偏离
+建议：暂缓或放弃该项目，集中精力聚焦产品上线
 ```
 
 ---
