@@ -1,0 +1,104 @@
+{
+  "skill_name": "priority-quant",
+  "version": "1.0.0",
+  "description": "项目优先级量化评估 - 多智能体适配版",
+  "compatibility": {
+    "programming_agents": {
+      "claude_code": {
+        "compatible": true,
+        "trigger_patterns": ["/project-priority", "项目优先级", "优先级评估", "项目排序"],
+        "execution_mode": "direct",
+        "script_runner": "python",
+        "working_dir": "${SKILL_DIR}"
+      },
+      "codex": {
+        "compatible": true,
+        "trigger_patterns": ["evaluate project priority", "project ranking"],
+        "execution_mode": "sandbox",
+        "script_runner": "python",
+        "sandbox_config": {
+          "timeout": 30,
+          "memory_limit": "512MB"
+        }
+      },
+      "windsurf": {
+        "compatible": true,
+        "trigger_patterns": ["项目评估", "priority评估"],
+        "execution_mode": "workspace",
+        "script_runner": "python",
+        "workspace_config": {
+          "auto_save": true,
+          "sync_state": true
+        }
+      },
+      "cursor": {
+        "compatible": true,
+        "trigger_patterns": ["evaluate priority", "rank projects"],
+        "execution_mode": "inline",
+        "script_runner": "python",
+        "inline_config": {
+          "show_preview": true,
+          "auto_format": true
+        }
+      },
+      "trae": {
+        "compatible": true,
+        "trigger_patterns": ["项目优先级", "评估项目"],
+        "execution_mode": "integrated",
+        "script_runner": "python"
+      },
+      "github_copilot": {
+        "compatible": true,
+        "trigger_patterns": ["project priority", "priority evaluation"],
+        "execution_mode": "chat",
+        "script_runner": "python",
+        "chat_config": {
+          "suggestion_mode": "inline",
+          "context_window": 10
+        }
+      }
+    },
+    "autonomous_agents": {
+      "openclaw": {
+        "compatible": false,
+        "reason": "本skill专注于编程项目评估，不适用于自主智能体"
+      },
+      "hermes": {
+        "compatible": false,
+        "reason": "本skill专注于编程项目评估，不适用于自主智能体"
+      }
+    }
+  },
+  "execution_modes": {
+    "direct": {
+      "description": "直接在当前环境执行脚本",
+      "pros": ["实时反馈", "无需额外配置"],
+      "cons": ["依赖本地Python环境"]
+    },
+    "sandbox": {
+      "description": "在隔离沙箱中执行",
+      "pros": ["安全隔离", "资源可控"],
+      "cons": ["需要沙箱支持"]
+    },
+    "workspace": {
+      "description": "在工作区环境中执行",
+      "pros": ["状态持久化", "支持协作"],
+      "cons": ["需要工作区配置"]
+    },
+    "inline": {
+      "description": "内联执行并显示结果",
+      "pros": ["即时预览", "无缝集成"],
+      "cons": ["可能影响编辑体验"]
+    },
+    "integrated": {
+      "description": "集成到IDE功能中",
+      "pros": ["深度集成", "原生体验"],
+      "cons": ["需要IDE支持"]
+    },
+    "chat": {
+      "description": "通过对话交互执行",
+      "pros": ["自然语言交互", "灵活"],
+      "cons": ["可能不够精确"]
+    }
+  }
+}
