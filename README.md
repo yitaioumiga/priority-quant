@@ -1,16 +1,15 @@
 <div align="center">
 
-# 🎯 priority-quant
+# 🎯 Priority Quant
 
-**项目优先级量化评估 Skill**
+**项目优先级量化评估模型 - 多智能体适配版**
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-green.svg)]()
-[![Agents](https://img.shields.io/badge/agents-6-orange.svg)]()
+[![Python](https://img.shields.io/badge/python-3.8+-yellow.svg)]()
+[![Agents](https://img.shields.io/badge/agents-8-green.svg)]()
 
-*基于多维度量化模型，智能评估项目优先级，支持多种编程智能体平台*
-
-[快速开始](#快速开始) · [功能特性](#功能特性) · [使用示例](#使用示例) · [适配智能体](#适配智能体)
+[快速开始](#-快速开始) · [功能特性](#-功能特性) · [使用示例](#-使用示例) · [适配智能体](#-适配智能体)
 
 </div>
 
@@ -18,44 +17,27 @@
 
 ## 📖 简介
 
-**priority-quant** 是一个智能项目优先级评估工具，通过双轨制评估模型（极速4象限/深度6维度）量化项目优先级，结合战略对齐检验和工作流闭环，帮助你做出更明智的资源分配决策。
+**Priority Quant** 是一个基于多维度量化模型的项目优先级评估工具，通过双轨制评估（极速4象限/深度6维度）帮助用户做出科学的资源分配决策。
 
 ### 适用场景
 
-- 🎯 项目选型与优先级排序
-- 📊 资源分配决策
-- 📋 日常任务管理
-- 🎯 战略对齐验证
+- 🚀 项目选型：多个项目同时进行，需要确定优先级
+- 📊 资源分配：有限资源下，如何分配人力物力
+- 🎯 战略对齐：确保项目与核心目标一致
+- 📋 任务管理：日常任务的优先级排序
 
 ---
 
 ## ✨ 功能特性
 
-### 双轨制评估
-
-| 模式 | 适用场景 | 评估维度 |
-|------|----------|----------|
-| **Fast-track** | 日常小项目、单人任务、<1周工作量 | 重要/紧急4象限 |
-| **Deep-track** | 复杂项目、多方协作、≥1周工作量 | 6维度加权评分 |
-
-### 核心能力
-
-- 🤖 **AI预审推荐** - 智能体基于项目描述预估评分
-- 🎯 **战略对齐检验** - 验证项目与核心目标的一致性
-- 📊 **量化评估** - 6维度加权模型（紧急程度、重要程度、规模大小、实现可能性、ROI预期、依赖阻塞）
-- 📝 **飞书集成** - 支持导出到飞书多维表格
-- 📋 **WBS拆解** - 自动触发最小启动单元拆解
-
-### 评分维度
-
-| 维度 | 权重 | 说明 |
-|------|------|------|
-| 紧急程度 | 25% | 时间敏感性和延迟后果 |
-| 重要程度 | 30% | 对业务战略的价值贡献 |
-| 规模大小 | 15% | 资源投入和工作量（反向） |
-| 实现可能性 | 15% | 技术可行性和风险可控性 |
-| ROI预期 | 10% | 投资回报率和价值产出 |
-| 依赖阻塞 | 5% | 外部依赖程度（反向） |
+| 功能 | 说明 | 触发方式 |
+|------|------|----------|
+| **双轨制评估** | Fast-track极速4象限 / Deep-track深度6维度 | 自动识别项目复杂度 |
+| **6维度量化** | 紧急度、重要度、规模、可行性、ROI、依赖阻塞 | 加权计算 |
+| **战略对齐检验** | 验证项目与核心目标的对齐度 | 每次评估自动 |
+| **AI预审推荐** | 智能体预估评分，用户复核微调 | Deep-track模式 |
+| **飞书集成** | 评估结果导出到飞书多维表格 | 可选配置 |
+| **WBS拆解** | Top1项目自动触发任务拆解 | 评估完成后 |
 
 ---
 
@@ -64,106 +46,74 @@
 ### 前置要求
 
 - Python 3.8+
-- 待评估项目的基本信息
-
-### 安装
-
-```bash
-git clone https://github.com/yitaioumiga/priority-quant.git
-cd priority-quant
-```
+- 智能体环境（Claude Code / Codex / Windsurf / Cursor / Trae / GitHub Copilot / OpenClaw / Hermes）
 
 ### 基本使用
 
-#### 1. Fast-track 极速模式
-
-对于简单项目，直接描述即可：
-
-```
-用户：整理笔记
-AI：判断为"重要不紧急"，建议安排在固定时间段处理
-```
-
-#### 2. Deep-track 深度模式
-
-对于复杂项目，使用6维度评估：
-
 ```bash
-python scripts/evaluate.py --projects '[
-  {
-    "name": "笔记侠系统重构",
-    "urgency": 3,
-    "importance": 5,
-    "scale": 2,
-    "feasibility": 4,
-    "roi": 5,
-    "dependencies": 3
-  }
-]'
-```
+# 克隆仓库
+git clone https://github.com/yitaioumiga/priority-quant.git
+cd priority-quant
 
-**输出示例**：
-
-```json
-{
-  "status": "success",
-  "projects": [
-    {
-      "name": "笔记侠系统重构",
-      "total_score": 4.1,
-      "rank": 1,
-      "weighted_scores": {
-        "urgency": 0.75,
-        "importance": 1.5,
-        "scale": 0.6,
-        "feasibility": 0.6,
-        "roi": 0.5,
-        "dependencies": 0.15
-      }
-    }
-  ],
-  "weights": {
-    "urgency": 0.25,
-    "importance": 0.30,
-    "scale": 0.15,
-    "feasibility": 0.15,
-    "roi": 0.10,
-    "dependencies": 0.05
-  }
-}
+# 执行评估
+python scripts/evaluate.py --projects '[{"name":"项目A","urgency":5,"importance":5,"scale":3,"feasibility":4,"roi":4,"dependencies":2}]'
 ```
 
 ---
 
 ## 📚 使用示例
 
-### 示例 1: 日常小任务
+### 示例 1: Fast-track 极速模式
+
+**场景**：日常小任务，单人执行，<1周工作量
 
 **输入**：
 ```
-整理笔记
+整理笔记、写周报、回复邮件
 ```
 
 **输出**：
-- 模式：Fast-track
-- 分类：重要不紧急
-- 建议：安排在固定时间段处理
+```
+✅ Fast-track模式
+- 整理笔记：重要不紧急 → 安排固定时间段
+- 写周报：重要紧急 → 立即处理
+- 回复邮件：紧急不重要 → 批量处理或委托
+```
 
-### 示例 2: 复杂项目评估
+### 示例 2: Deep-track 深度模式
+
+**场景**：复杂项目，多方协作，≥1周工作量
 
 **输入**：
-```
-笔记侠系统重构，涉及前后端、数据迁移、用户体验优化，预计2个月
+```json
+{
+  "name": "笔记侠系统重构",
+  "description": "涉及前后端、数据迁移、用户体验优化，预计2个月",
+  "urgency": 3,
+  "importance": 5,
+  "scale": 4,
+  "feasibility": 4,
+  "roi": 5,
+  "dependencies": 3
+}
 ```
 
 **输出**：
-- 模式：Deep-track
-- AI预评分：紧急程度3分、重要程度5分、规模2分、实现可能性4分、ROI 5分、依赖3分
-- 总分：4.1
-- 排名：第1位
-- 建议：优先推进
+```
+✅ Deep-track模式
+📊 综合评分：4.15/5.0
+📈 排名：第1名
+🎯 战略对齐度：完全对齐
+
+行动建议：
+1. 立即启动，组建项目团队
+2. 拆解为最小启动单元
+3. 优先处理数据迁移模块
+```
 
 ### 示例 3: 战略偏离警告
+
+**场景**：项目与当前核心目标不一致
 
 **输入**：
 ```
@@ -172,8 +122,11 @@ python scripts/evaluate.py --projects '[
 ```
 
 **输出**：
-- ⚠️ 警告：此项目与当前核心目标不符
-- 建议：暂缓或降优先级
+```
+⚠️ 战略偏离警告
+该项目与当前核心目标"校招准备"严重偏离
+建议：暂缓或放弃该项目，集中精力准备校招
+```
 
 ---
 
@@ -192,7 +145,74 @@ python scripts/evaluate.py --projects '[
 
 ### 自主智能体
 
-本skill专注于编程项目评估，不适用于自主智能体。如需自主任务规划，请使用 [portfolio-guardian](https://github.com/yitaioumiga/portfolio-guardian)。
+| 智能体 | 适配程度 | 自主能力 | 特殊功能 |
+|--------|----------|----------|----------|
+| **OpenClaw** | ✅ 完全适配 | 定时执行、主动监控 | 3层任务分解、依赖追踪 |
+| **Hermes** | ✅ 完全适配 | 定时执行、主动监控、并行执行 | 4层任务分解、上下文感知 |
+
+### 适配说明
+
+#### 编程智能体
+
+本skill完全适配以下编程智能体：
+
+- **Claude Code**: 直接执行，支持自然语言交互
+- **Codex**: 沙箱执行，资源隔离
+- **Windsurf**: 工作区执行，状态持久化
+- **Cursor**: 内联执行，实时预览
+- **Trae**: 集成执行，原生体验
+- **GitHub Copilot**: 对话执行，智能建议
+
+#### 自主智能体
+
+本skill完全适配以下自主智能体：
+
+- **OpenClaw**: 支持任务规划和自动执行
+  - 3层任务分解
+  - 依赖追踪
+  - 定时执行
+
+- **Hermes**: 支持更深层次的任务规划
+  - 4层任务分解
+  - 上下文感知
+  - 历史学习
+  - 并行执行
+
+### 使用方式
+
+#### 编程智能体
+
+```bash
+# Claude Code
+/project-priority 或自然语言描述
+
+# Codex
+自然语言描述
+
+# Windsurf
+工作区内触发
+
+# Cursor
+内联触发
+
+# Trae
+集成触发
+
+# GitHub Copilot
+对话触发
+```
+
+#### 自主智能体
+
+```python
+# OpenClaw
+自动规划任务执行流程
+支持3层任务分解和依赖追踪
+
+# Hermes
+支持更深层次的任务规划和并行执行
+4层任务分解，支持上下文感知和历史学习
+```
 
 ---
 
@@ -200,14 +220,15 @@ python scripts/evaluate.py --projects '[
 
 ```
 priority-quant/
-├── SKILL.md                      # 主文档
+├── SKILL.md                          # 主文档
+├── README.md                         # 本文件
+├── MULTI_AGENT_ADAPTER_FRAMEWORK.md  # 通用适配框架
 ├── adapters/
-│   └── adapter-config.json       # 多智能体适配配置
+│   └── adapter-config.json           # 智能体适配配置
 ├── references/
-│   └── scoring-guide.md          # 评分标准指南
-├── scripts/
-│   └── evaluate.py               # 评估脚本
-└── MULTI_AGENT_ADAPTER_FRAMEWORK.md  # 通用适配框架
+│   └── scoring-guide.md              # 评分指南
+└── scripts/
+    └── evaluate.py                   # 评估脚本
 ```
 
 ---
@@ -215,9 +236,8 @@ priority-quant/
 ## 📖 文档
 
 - [SKILL.md](SKILL.md) - 完整使用文档
-- [scoring-guide.md](references/scoring-guide.md) - 详细评分标准
-- [adapter-config.json](adapters/adapter-config.json) - 适配器配置说明
-- [MULTI_AGENT_ADAPTER_FRAMEWORK.md](MULTI_AGENT_ADAPTER_FRAMEWORK.md) - 多智能体适配框架
+- [评分指南](references/scoring-guide.md) - 6维度评分标准
+- [适配框架](MULTI_AGENT_ADAPTER_FRAMEWORK.md) - 多智能体适配原理
 
 ---
 
@@ -241,8 +261,8 @@ priority-quant/
 
 ## 🙏 致谢
 
-- [awesome-readme](https://github.com/matiassingers/awesome-readme) - README 最佳实践
-- [Best-README-Template](https://github.com/othneildrew/Best-README-Template) - README 模板
+- [awesome-readme](https://github.com/matiassingers/awesome-readme) - README最佳实践
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template) - README模板
 
 ---
 

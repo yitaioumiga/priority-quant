@@ -1,6 +1,6 @@
 {
   "skill_name": "priority-quant",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "项目优先级量化评估 - 多智能体适配版",
   "compatibility": {
     "programming_agents": {
@@ -60,12 +60,126 @@
     },
     "autonomous_agents": {
       "openclaw": {
-        "compatible": false,
-        "reason": "本skill专注于编程项目评估，不适用于自主智能体"
+        "compatible": true,
+        "trigger_patterns": ["项目优先级", "优先级评估", "项目排序", "任务管理"],
+        "execution_mode": "autonomous",
+        "task_planning": {
+          "enabled": true,
+          "decomposition_depth": 3,
+          "dependency_tracking": true
+        },
+        "autonomous_features": {
+          "scheduled_execution": true,
+          "proactive_monitoring": true,
+          "decision_making": true,
+          "multi_step_workflows": true
+        },
+        "task_templates": {
+          "weekly_review": {
+            "description": "周度项目优先级复盘",
+            "steps": [
+              "收集本周新增项目",
+              "评估各项目优先级分数",
+              "生成优先级排序报告",
+              "提醒高优先级项目待处理"
+            ],
+            "schedule": "每周一上午"
+          },
+          "monthly_report": {
+            "description": "月度项目优先级报告",
+            "steps": [
+              "汇总本月所有项目",
+              "分析优先级变化趋势",
+              "评估项目完成情况",
+              "生成月度优先级报告",
+              "提供资源分配建议"
+            ],
+            "schedule": "每月1-3日"
+          },
+          "project_intake": {
+            "description": "新项目入库评估",
+            "steps": [
+              "接收新项目描述",
+              "执行6维度评分",
+              "检查战略对齐度",
+              "生成评估报告",
+              "更新项目优先级列表"
+            ],
+            "trigger": "新项目提交"
+          }
+        }
       },
       "hermes": {
-        "compatible": false,
-        "reason": "本skill专注于编程项目评估，不适用于自主智能体"
+        "compatible": true,
+        "trigger_patterns": ["项目优先级", "优先级评估", "项目排序", "任务管理"],
+        "execution_mode": "autonomous",
+        "task_planning": {
+          "enabled": true,
+          "decomposition_depth": 4,
+          "dependency_tracking": true,
+          "parallel_execution": true
+        },
+        "autonomous_features": {
+          "scheduled_execution": true,
+          "proactive_monitoring": true,
+          "decision_making": true,
+          "multi_step_workflows": true,
+          "context_awareness": true,
+          "learning_from_history": true
+        },
+        "task_templates": {
+          "weekly_review": {
+            "description": "周度项目优先级复盘",
+            "steps": [
+              "收集本周新增项目",
+              "执行批量优先级评估",
+              "分析优先级变化趋势",
+              "生成可视化报告",
+              "推送高优先级提醒"
+            ],
+            "schedule": "每周一上午",
+            "priority": "high"
+          },
+          "monthly_report": {
+            "description": "月度项目优先级报告",
+            "steps": [
+              "汇总本月所有项目",
+              "深度分析优先级变化",
+              "评估资源分配效率",
+              "识别瓶颈和风险",
+              "生成月度报告",
+              "提供优化建议"
+            ],
+            "schedule": "每月1-3日",
+            "priority": "high"
+          },
+          "project_intake": {
+            "description": "新项目入库评估",
+            "steps": [
+              "接收新项目描述",
+              "AI预审推荐分数",
+              "执行6维度精算",
+              "检查战略对齐度",
+              "生成评估报告",
+              "更新项目列表",
+              "通知相关人员"
+            ],
+            "trigger": "新项目提交",
+            "priority": "medium"
+          },
+          "strategic_alignment": {
+            "description": "战略对齐度检查",
+            "steps": [
+              "获取用户当前核心目标",
+              "分析所有项目对齐度",
+              "识别偏离项目",
+              "生成对齐度报告",
+              "提供调整建议"
+            ],
+            "schedule": "每月15日",
+            "priority": "medium"
+          }
+        }
       }
     }
   },
@@ -99,6 +213,11 @@
       "description": "通过对话交互执行",
       "pros": ["自然语言交互", "灵活"],
       "cons": ["可能不够精确"]
+    },
+    "autonomous": {
+      "description": "自主执行模式，支持任务规划和自动执行",
+      "pros": ["自动化程度高", "支持复杂工作流", "可定时执行"],
+      "cons": ["需要任务规划能力", "可能需要用户确认关键决策"]
     }
   }
 }
